@@ -36,14 +36,19 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
 body {
     font-family: 'JetBrains Mono', monospace;
     background-color: #282a36;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    min-height: 100vh;
 }
 
 .terminal {
@@ -112,6 +117,7 @@ body {
     display: flex;
     margin-bottom: 10px;
     font-size: 14px;
+    word-break: break-word;
 }
 
 .prompt {
@@ -132,6 +138,7 @@ body {
 .output p {
     margin-bottom: 10px;
     line-height: 1.5;
+    word-break: break-word;
 }
 
 .output ul {
@@ -141,6 +148,7 @@ body {
 
 .output li {
     margin-bottom: 8px;
+    word-break: break-word;
 }
 
 .terminal-input-line {
@@ -186,23 +194,60 @@ body {
 a {
     color: var(--terminal-cyan);
     text-decoration: none;
+    word-break: break-all;
 }
 
 a:hover {
     text-decoration: underline;
 }
 
-/* Responsive design */
+/* Mobile optimizations */
 @media (max-width: 768px) {
-    .terminal {
-        height: 90vh;
+    body {
+        padding: 0;
     }
-    
+
+    .terminal {
+        height: 100vh;
+        width: 100vw;
+        max-width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .terminal-content {
+        padding: 15px;
+    }
+
     .line {
         font-size: 12px;
     }
-    
+
     .terminal-input {
         font-size: 12px;
     }
+
+    .output {
+        margin-left: 10px;
+    }
+
+    .prompt {
+        font-size: 12px;
+    }
+}
+
+/* Prevent text selection */
+.terminal {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Allow text selection in output */
+.output {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
 } 
