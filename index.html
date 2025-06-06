@@ -7,234 +7,225 @@
     <meta name="keywords" content="Bhartesh Kaushik, Portfolio, Software Developer, React, Node.js">
     <meta name="author" content="Bhartesh Kaushik">
     <title>Bhartesh Kaushik - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">BK</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="glitch" data-text="Hi, I'm Bhartesh Kaushik">Hi, I'm Bhartesh Kaushik</h1>
-            <p class="subtitle">Software Development Engineer</p>
-            <div class="social-links">
-                <a href="https://github.com/bhartesh77" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/bhartesh-kaushik-7647081a3" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://codechef.com/users/dirtylegs" target="_blank"><i class="fas fa-code"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="about">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <div class="education">
-                <h3>Education</h3>
-                <div class="education-item">
-                    <h4>Bachelor of Technology - Computer Science and Engineering</h4>
-                    <p>J.C. Bose University of Science and Technology, YMCA</p>
-                    <p>CGPA: 8.96 | Class Rank: 1/60</p>
-                    <p>2023</p>
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title text-gradient-animate">Bhartesh Kaushik</h1>
+                <p class="hero-subtitle">Full Stack Developer</p>
+                <div class="social-links">
+                    <a href="https://github.com/bhartesh" target="_blank" aria-label="GitHub" class="hover-lift"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/bhartesh" target="_blank" aria-label="LinkedIn" class="hover-lift"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:bharteshkaushik@gmail.com" aria-label="Email" class="hover-lift"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
-            <div class="skills">
-                <h3>Skills</h3>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h4>Languages</h4>
-                        <ul>
-                            <li>JavaScript</li>
-                            <li>TypeScript</li>
-                            <li>C++</li>
-                            <li>Python</li>
-                            <li>Java</li>
-                            <li>C#</li>
-                            <li>SQL</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Frameworks/Libraries</h4>
-                        <ul>
-                            <li>React.js</li>
-                            <li>React Native</li>
-                            <li>Node.js</li>
-                            <li>.NET</li>
-                            <li>GraphQL</li>
-                            <li>Tailwind CSS</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Tools/Platforms</h4>
-                        <ul>
-                            <li>Azure</li>
-                            <li>AWS</li>
-                            <li>Docker</li>
-                            <li>Git/GitHub</li>
-                        </ul>
+        </section>
+
+        <section id="about" class="about">
+            <h2 class="fade-up">About Me</h2>
+            <div class="about-content stagger-children">
+                <div class="education fade-up">
+                    <h3>Education</h3>
+                    <div class="education-item hover-lift">
+                        <h4>Bachelor of Technology - Computer Science and Engineering</h4>
+                        <p>J.C. Bose University of Science and Technology, YMCA</p>
+                        <p>CGPA: 8.96 | Class Rank: 1/60</p>
+                        <p>2023</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="experience">
-        <h2>Work Experience</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Software Development Engineer</h3>
-                    <h4>Iesoftek</h4>
-                    <p class="date">07/2023 – present</p>
-                    <div class="project">
-                        <h5>Project: Hydreight</h5>
-                        <ul>
-                            <li>Enabled appointment booking with doctors and nurses, enhancing client accessibility</li>
-                            <li>Implemented VoIP video calling functionality in React Native, using Apple's new CallKit framework</li>
-                            <li>Integrated secure payment functionality with Authorize.net integration across frontend and backend</li>
-                            <li>Reduced API response time for large healthcare professional and service provider lists to under 1 second</li>
-                            <li>Implemented Email, SMS, and push notifications using Azure Service Bus Queues</li>
-                            <li>Integrated lab test booking with LiveHealth API integration across frontend and backend</li>
-                        </ul>
-                        <div class="tech-stack">
-                            <span>React.js</span>
-                            <span>React Native</span>
-                            <span>.Net</span>
-                            <span>Javascript</span>
-                            <span>C#</span>
+                <div class="skills fade-up">
+                    <h3>Skills</h3>
+                    <div class="skills-grid stagger-children">
+                        <div class="skill-category hover-lift">
+                            <h4>Languages</h4>
+                            <ul>
+                                <li>JavaScript</li>
+                                <li>TypeScript</li>
+                                <li>C++</li>
+                                <li>Python</li>
+                                <li>Java</li>
+                                <li>C#</li>
+                                <li>SQL</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category hover-lift">
+                            <h4>Frameworks/Libraries</h4>
+                            <ul>
+                                <li>React.js</li>
+                                <li>React Native</li>
+                                <li>Node.js</li>
+                                <li>.NET</li>
+                                <li>GraphQL</li>
+                                <li>Tailwind CSS</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category hover-lift">
+                            <h4>Tools/Platforms</h4>
+                            <ul>
+                                <li>Azure</li>
+                                <li>AWS</li>
+                                <li>Docker</li>
+                                <li>Git/GitHub</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Software Development Intern</h3>
-                    <h4>Iesoftek</h4>
-                    <p class="date">01/2023 – 06/2023</p>
-                    <div class="project">
-                        <h5>Project: Tradexport</h5>
-                        <ul>
-                            <li>Contributed to the development of Tradexport, a cross-platform application to trade Cars</li>
-                            <li>Integrated vehicle booking flow which enabled clients to order cars through the mobile app</li>
-                            <li>Achieved over 10,000 downloads on Android</li>
-                        </ul>
-                        <div class="tech-stack">
-                            <span>React.js</span>
-                            <span>Typescript</span>
-                            <span>React Native</span>
-                            <span>Git/Github</span>
-                            <span>GraphQL</span>
+        </section>
+
+        <section id="experience" class="experience">
+            <h2 class="fade-up">Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item fade-up">
+                    <div class="timeline-content hover-lift">
+                        <h3>Software Development Engineer</h3>
+                        <h4>Iesoftek</h4>
+                        <p class="date">07/2023 – present</p>
+                        <div class="project">
+                            <h5>Project: Hydreight</h5>
+                            <ul>
+                                <li>Enabled appointment booking with doctors and nurses, enhancing client accessibility</li>
+                                <li>Implemented VoIP video calling functionality in React Native, using Apple's new CallKit framework</li>
+                                <li>Integrated secure payment functionality with Authorize.net integration across frontend and backend</li>
+                                <li>Reduced API response time for large healthcare professional and service provider lists to under 1 second</li>
+                                <li>Implemented Email, SMS, and push notifications using Azure Service Bus Queues</li>
+                                <li>Integrated lab test booking with LiveHealth API integration across frontend and backend</li>
+                            </ul>
+                            <div class="tech-stack">
+                                <span>React.js</span>
+                                <span>React Native</span>
+                                <span>.Net</span>
+                                <span>Javascript</span>
+                                <span>C#</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item fade-up">
+                    <div class="timeline-content hover-lift">
+                        <h3>Software Development Intern</h3>
+                        <h4>Iesoftek</h4>
+                        <p class="date">01/2023 – 06/2023</p>
+                        <div class="project">
+                            <h5>Project: Tradexport</h5>
+                            <ul>
+                                <li>Contributed to the development of Tradexport, a cross-platform application to trade Cars</li>
+                                <li>Integrated vehicle booking flow which enabled clients to order cars through the mobile app</li>
+                                <li>Achieved over 10,000 downloads on Android</li>
+                            </ul>
+                            <div class="tech-stack">
+                                <span>React.js</span>
+                                <span>Typescript</span>
+                                <span>React Native</span>
+                                <span>Git/Github</span>
+                                <span>GraphQL</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="projects" class="projects">
-        <h2>Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>Code Connect</h3>
-                <p>Real-time code editor for software development teams</p>
-                <ul>
-                    <li>Developed a web-based real-time code collaborator</li>
-                    <li>Users can make live changes without local copies</li>
-                </ul>
-                <div class="tech-stack">
-                    <span>Node.js</span>
-                    <span>React.js</span>
-                    <span>Express.js</span>
-                    <span>Web Sockets</span>
+        <section id="projects" class="projects">
+            <h2 class="fade-up">Projects</h2>
+            <div class="projects-grid stagger-children">
+                <div class="project-card hover-lift">
+                    <h3>Code Connect</h3>
+                    <p>Real-time code editor for software development teams</p>
+                    <ul>
+                        <li>Developed a web-based real-time code collaborator</li>
+                        <li>Users can make live changes without local copies</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span>Node.js</span>
+                        <span>React.js</span>
+                        <span>Express.js</span>
+                        <span>Web Sockets</span>
+                    </div>
+                </div>
+                <div class="project-card hover-lift">
+                    <h3>Pokémon Lounge</h3>
+                    <p>Know everything about your favourite pokemon</p>
+                    <ul>
+                        <li>Web application integrating with PokeAPI</li>
+                        <li>Implemented Pokémon stats comparison feature</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span>React.js</span>
+                        <span>Typescript</span>
+                        <span>Tailwind CSS</span>
+                        <span>VITE</span>
+                    </div>
+                </div>
+                <div class="project-card hover-lift">
+                    <h3>Codeforces Problems Predictor</h3>
+                    <p>Analysis of Codeforces contest patterns</p>
+                    <ul>
+                        <li>Python script to scrape problems from past 40 contests</li>
+                        <li>Analysis of most frequently asked topics</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span>Python</span>
+                        <span>Web Scraping</span>
+                        <span>Beautifulsoup4</span>
+                    </div>
                 </div>
             </div>
-            <div class="project-card">
-                <h3>Pokémon Lounge</h3>
-                <p>Know everything about your favourite pokemon</p>
-                <ul>
-                    <li>Web application integrating with PokeAPI</li>
-                    <li>Implemented Pokémon stats comparison feature</li>
-                </ul>
-                <div class="tech-stack">
-                    <span>React.js</span>
-                    <span>Typescript</span>
-                    <span>Tailwind CSS</span>
-                    <span>VITE</span>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3>Codeforces Problems Predictor</h3>
-                <p>Analysis of Codeforces contest patterns</p>
-                <ul>
-                    <li>Python script to scrape problems from past 40 contests</li>
-                    <li>Analysis of most frequently asked topics</li>
-                </ul>
-                <div class="tech-stack">
-                    <span>Python</span>
-                    <span>Web Scraping</span>
-                    <span>Beautifulsoup4</span>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="achievements" class="achievements">
-        <h2>Awards & Achievements</h2>
-        <div class="achievements-grid">
-            <div class="achievement-card">
-                <i class="fas fa-trophy"></i>
-                <h3>CodeChef</h3>
-                <p>5 stars with a 2057 rating</p>
+        <section id="achievements" class="achievements">
+            <h2 class="fade-up">Awards & Achievements</h2>
+            <div class="achievements-grid stagger-children">
+                <div class="achievement-card hover-lift">
+                    <i class="fas fa-trophy"></i>
+                    <h3>CodeChef</h3>
+                    <p>5 stars with a 2057 rating</p>
+                </div>
+                <div class="achievement-card hover-lift">
+                    <i class="fas fa-medal"></i>
+                    <h3>Codechef Starters</h3>
+                    <p>Global Rank 28, round 42</p>
+                </div>
+                <div class="achievement-card hover-lift">
+                    <i class="fas fa-award"></i>
+                    <h3>Google Kickstart</h3>
+                    <p>Global Rank 676, 2022 round D</p>
+                </div>
+                <div class="achievement-card hover-lift">
+                    <i class="fas fa-crown"></i>
+                    <h3>CodeKaze Season 5</h3>
+                    <p>National Rank 1 among 16k+ colleges</p>
+                </div>
             </div>
-            <div class="achievement-card">
-                <i class="fas fa-medal"></i>
-                <h3>Codechef Starters</h3>
-                <p>Global Rank 28, round 42</p>
-            </div>
-            <div class="achievement-card">
-                <i class="fas fa-award"></i>
-                <h3>Google Kickstart</h3>
-                <p>Global Rank 676, 2022 round D</p>
-            </div>
-            <div class="achievement-card">
-                <i class="fas fa-crown"></i>
-                <h3>CodeKaze Season 5</h3>
-                <p>National Rank 1 among 16k+ colleges</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact" class="contact">
-        <h2>Get in Touch</h2>
-        <div class="contact-content">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:bharteshkaushik@gmail.com">bharteshkaushik@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:8287328790">+91 8287328790</a>
+        <section id="contact" class="contact">
+            <h2 class="fade-up">Get in Touch</h2>
+            <div class="contact-content stagger-children">
+                <div class="contact-info">
+                    <div class="contact-item hover-lift">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:bharteshkaushik@gmail.com">bharteshkaushik@gmail.com</a>
+                    </div>
+                    <div class="contact-item hover-lift">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:8287328790">+91 8287328790</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer>
         <p>&copy; 2025 Bhartesh Kaushik. All rights reserved.</p>
     </footer>
 
+    <script type="module" src="js/three-animations.js"></script>
+    <script src="js/animations.js"></script>
     <script src="script.js"></script>
 </body>
 </html> 

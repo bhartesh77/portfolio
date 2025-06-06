@@ -1,0 +1,28 @@
+/* Import utilities */
+@import 'utils/variables.css';
+@import 'utils/base.css';
+@import 'utils/utilities.css';
+@import 'utils/animations.css';
+
+/* Import components */
+@import 'components/navbar.css';
+@import 'components/hero.css';
+@import 'components/about.css';
+@import 'components/experience.css';
+@import 'components/projects.css';
+@import 'components/achievements.css';
+@import 'components/contact.css';
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* Base styles */
+@import 'utils/base.css';
+
+/* Component styles */
+@import 'components/hero.css';
+@import 'components/about.css';
+@import 'components/experience.css';
+@import 'components/projects.css';
+@import 'components/achievements.css';
+@import 'components/contact.css'; 
