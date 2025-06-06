@@ -3,9 +3,14 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.136.0';
 class ParticleSystem {
     constructor() {
         this.container = document.querySelector('.hero');
+        this.isMobile = this.checkMobile();
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        this.renderer = new THREE.WebGLRenderer({ 
+            alpha: true, 
+            antialias: !this.isMobile, // Disable antialiasing on mobile
+            powerPreference: 'high-performance'
+        });
         this.particles = [];
         this.mouseX = 0;
         this.mouseY = 0;
@@ -13,21 +18,60 @@ class ParticleSystem {
         this.targetY = 0;
         this.windowHalfX = window.innerWidth / 2;
         this.windowHalfY = window.innerHeight / 2;
+        this.animationFrameId = null;
+        this.touchStartX = 0;
+        this.touchStartY = 0;
+        this.isTouching = false;
 
-        this.init();
+        // Initialize only if WebGL is supported
+        if (this.isWebGLSupported()) {
+            this.init();
+        } else {
+            this.addFallbackBackground();
+        }
+    }
+
+    isWebGLSupported() {
+        try {
+            const canvas = document.createElement('canvas');
+            return !!(window.WebGLRenderingContext && 
+                (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+        } catch (e) {
+            return false;
+        }
+    }
+
+    checkMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+               window.innerWidth <= 768;
+    }
+
+    addFallbackBackground() {
+        const gradient = document.createElement('div');
+        gradient.className = 'fallback-gradient';
+        gradient.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--bg-color) 0%, var(--card-bg) 100%);
+            z-index: 0;
+        `;
+        this.container.insertBefore(gradient, this.container.firstChild);
     }
 
     init() {
-        // Setup renderer
+        // Setup renderer with mobile optimizations
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        this.renderer.setPixelRatio(this.isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
         this.container.insertBefore(this.renderer.domElement, this.container.firstChild);
 
         // Setup camera
-        this.camera.position.z = 30;
+        this.camera.position.z = this.isMobile ? 40 : 30;
 
-        // Create particles
-        const particleCount = 2000;
+        // Create particles with reduced count on mobile
+        const particleCount = this.isMobile ? 800 : 2000;
         const geometry = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
         const colors = new Float32Array(particleCount * 3);
@@ -41,11 +85,10 @@ class ParticleSystem {
 
         for (let i = 0; i < particleCount; i++) {
             const i3 = i * 3;
-            positions[i3] = (Math.random() - 0.5) * 50;
-            positions[i3 + 1] = (Math.random() - 0.5) * 50;
-            positions[i3 + 2] = (Math.random() - 0.5) * 50;
+            positions[i3] = (Math.random() - 0.5) * (this.isMobile ? 30 : 50);
+            positions[i3 + 1] = (Math.random() - 0.5) * (this.isMobile ? 30 : 50);
+            positions[i3 + 2] = (Math.random() - 0.5) * (this.isMobile ? 30 : 50);
 
-            // Assign random color from options
             color.copy(colorOptions[Math.floor(Math.random() * colorOptions.length)]);
             colors[i3] = color.r;
             colors[i3 + 1] = color.g;
@@ -56,7 +99,7 @@ class ParticleSystem {
         geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
         const material = new THREE.PointsMaterial({
-            size: 0.1,
+            size: this.isMobile ? 0.15 : 0.1,
             vertexColors: true,
             transparent: true,
             opacity: 0.8,
@@ -67,11 +110,53 @@ class ParticleSystem {
         this.scene.add(this.particleSystem);
 
         // Add event listeners
-        document.addEventListener('mousemove', this.onDocumentMouseMove.bind(this));
+        if (this.isMobile) {
+            this.setupMobileEvents();
+        } else {
+            document.addEventListener('mousemove', this.onDocumentMouseMove.bind(this));
+        }
         window.addEventListener('resize', this.onWindowResize.bind(this));
 
         // Start animation
         this.animate();
+    }
+
+    setupMobileEvents() {
+        // Touch events
+        this.container.addEventListener('touchstart', (event) => {
+            this.isTouching = true;
+            this.touchStartX = event.touches[0].clientX;
+            this.touchStartY = event.touches[0].clientY;
+        }, { passive: true });
+
+        this.container.addEventListener('touchmove', (event) => {
+            if (!this.isTouching) return;
+            
+            const touchX = event.touches[0].clientX;
+            const touchY = event.touches[0].clientY;
+            
+            this.mouseX = (touchX - this.windowHalfX) * 2;
+            this.mouseY = (touchY - this.windowHalfY) * 2;
+        }, { passive: true });
+
+        this.container.addEventListener('touchend', () => {
+            this.isTouching = false;
+        }, { passive: true });
+
+        // Device orientation
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', (event) => {
+                if (!this.isTouching) {  // Only use gyroscope when not touching
+                    const beta = event.beta;  // -180 to 180 (front/back)
+                    const gamma = event.gamma; // -90 to 90 (left/right)
+                    
+                    if (beta !== null && gamma !== null) {
+                        this.mouseX = gamma * 10;  // Scale the movement
+                        this.mouseY = beta * 10;
+                    }
+                }
+            }, { passive: true });
+        }
     }
 
     onDocumentMouseMove(event) {
@@ -87,26 +172,64 @@ class ParticleSystem {
         this.camera.updateProjectionMatrix();
 
         this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setPixelRatio(this.isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
     }
 
     animate() {
-        requestAnimationFrame(this.animate.bind(this));
+        this.animationFrameId = requestAnimationFrame(this.animate.bind(this));
 
-        this.targetX = this.mouseX * 0.001;
-        this.targetY = this.mouseY * 0.001;
+        if (this.isMobile) {
+            // Smooth rotation based on touch/gyroscope
+            this.targetX = this.mouseX * 0.001;
+            this.targetY = this.mouseY * 0.001;
 
-        this.particleSystem.rotation.x += 0.0005;
-        this.particleSystem.rotation.y += 0.0005;
+            // Add a small constant rotation when not interacting
+            if (!this.isTouching) {
+                this.particleSystem.rotation.x += 0.0002;
+                this.particleSystem.rotation.y += 0.0002;
+            }
 
-        // Smooth rotation based on mouse position
-        this.particleSystem.rotation.x += (this.targetY - this.particleSystem.rotation.x) * 0.05;
-        this.particleSystem.rotation.y += (this.targetX - this.particleSystem.rotation.y) * 0.05;
+            // Smooth rotation based on touch/gyroscope position
+            this.particleSystem.rotation.x += (this.targetY - this.particleSystem.rotation.x) * 0.05;
+            this.particleSystem.rotation.y += (this.targetX - this.particleSystem.rotation.y) * 0.05;
+        } else {
+            this.targetX = this.mouseX * 0.001;
+            this.targetY = this.mouseY * 0.001;
+
+            this.particleSystem.rotation.x += 0.0005;
+            this.particleSystem.rotation.y += 0.0005;
+
+            this.particleSystem.rotation.x += (this.targetY - this.particleSystem.rotation.x) * 0.05;
+            this.particleSystem.rotation.y += (this.targetX - this.particleSystem.rotation.y) * 0.05;
+        }
 
         this.renderer.render(this.scene, this.camera);
+    }
+
+    // Cleanup method
+    destroy() {
+        if (this.animationFrameId) {
+            cancelAnimationFrame(this.animationFrameId);
+        }
+        if (this.renderer) {
+            this.renderer.dispose();
+        }
+        if (this.particleSystem) {
+            this.particleSystem.geometry.dispose();
+            this.particleSystem.material.dispose();
+        }
     }
 }
 
 // Initialize particle system when DOM is loaded
+let particleSystem;
 document.addEventListener('DOMContentLoaded', () => {
-    new ParticleSystem();
+    particleSystem = new ParticleSystem();
+});
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    if (particleSystem) {
+        particleSystem.destroy();
+    }
 }); 
