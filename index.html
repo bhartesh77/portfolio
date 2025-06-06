@@ -12,7 +12,36 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="terminal">
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <div class="login-header">
+                <img src="https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png" alt="Ubuntu Logo" class="ubuntu-logo">
+                <h1>Ubuntu</h1>
+            </div>
+            <div class="login-profiles">
+                <div class="profile-card" data-user="guest">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-name">Guest</div>
+                </div>
+                <div class="profile-card" data-user="root">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="profile-name">Root</div>
+                </div>
+            </div>
+            <div class="login-footer">
+                <div class="system-info">
+                    <span class="time" id="currentTime">00:00</span>
+                    <span class="date" id="currentDate">Monday, January 1</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="terminal" id="terminal" style="display: none;">
         <div class="terminal-header">
             <div class="terminal-buttons">
                 <span class="terminal-button close"></span>
@@ -48,6 +77,15 @@
             </div>
         </div>
     </div>
+
+    <div class="guest-screen" id="guestScreen" style="display: none;">
+        <div class="guest-content">
+            <h1>Welcome, Guest!</h1>
+            <p>This is a simple guest view. Please login as root to access the full terminal experience.</p>
+            <button class="logout-btn" onclick="showLoginScreen()">Logout</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html> 

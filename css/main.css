@@ -28,6 +28,7 @@
     --terminal-pink: #ff79c6;
     --terminal-cyan: #8be9fd;
     --terminal-gray: #6272a4;
+    --ubuntu-orange: #E95420;
 }
 
 * {
@@ -43,14 +44,148 @@ html, body {
 
 body {
     font-family: 'JetBrains Mono', monospace;
-    background-color: #282a36;
+    background: linear-gradient(135deg, #2c001e 0%, #5e2750 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
     min-height: 100vh;
+    color: var(--terminal-text);
 }
 
+/* Login Screen Styles */
+.login-screen {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #2c001e 0%, #5e2750 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    text-align: center;
+}
+
+.login-header {
+    margin-bottom: 40px;
+}
+
+.ubuntu-logo {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 20px;
+}
+
+.login-header h1 {
+    color: white;
+    font-size: 32px;
+    font-weight: 300;
+}
+
+.login-profiles {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.profile-card {
+    width: 100px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: scale(1.05);
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-avatar i {
+    font-size: 40px;
+    color: white;
+}
+
+.profile-name {
+    color: white;
+    font-size: 16px;
+}
+
+.login-footer {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+.system-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Guest Screen Styles */
+.guest-screen {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #2c001e 0%, #5e2750 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.guest-content {
+    text-align: center;
+    color: white;
+    padding: 40px;
+}
+
+.guest-content h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.guest-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.logout-btn {
+    background: var(--ubuntu-orange);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #d24314;
+}
+
+/* Terminal Styles (existing styles) */
 .terminal {
     width: 100%;
     max-width: 900px;
@@ -233,6 +368,24 @@ a:hover {
 
     .prompt {
         font-size: 12px;
+    }
+
+    .login-profiles {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-card {
+        width: 80px;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile-avatar i {
+        font-size: 32px;
     }
 }
 

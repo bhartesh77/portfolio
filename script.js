@@ -6,6 +6,60 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.opacity = '1';
     }, 100);
 
+    // Update time and date
+    function updateDateTime() {
+        const now = new Date();
+        const timeElement = document.getElementById('currentTime');
+        const dateElement = document.getElementById('currentDate');
+        
+        // Update time
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        timeElement.textContent = `${hours}:${minutes}`;
+        
+        // Update date
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        dateElement.textContent = now.toLocaleDateString('en-US', options);
+    }
+
+    // Update time every minute
+    updateDateTime();
+    setInterval(updateDateTime, 60000);
+
+    // Handle profile selection
+    const profileCards = document.querySelectorAll('.profile-card');
+    profileCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const user = card.dataset.user;
+            if (user === 'root') {
+                showTerminal();
+            } else {
+                showGuestScreen();
+            }
+        });
+    });
+
+    // Show login screen
+    window.showLoginScreen = function() {
+        document.getElementById('loginScreen').style.display = 'flex';
+        document.getElementById('terminal').style.display = 'none';
+        document.getElementById('guestScreen').style.display = 'none';
+    };
+
+    // Show terminal
+    function showTerminal() {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('terminal').style.display = 'flex';
+        document.getElementById('guestScreen').style.display = 'none';
+    }
+
+    // Show guest screen
+    function showGuestScreen() {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('terminal').style.display = 'none';
+        document.getElementById('guestScreen').style.display = 'flex';
+    }
+
     const terminal = document.querySelector('.terminal-content');
     const input = document.querySelector('.terminal-input');
     const output = document.querySelector('.terminal-output');
