@@ -4,6 +4,7 @@ class ParticleSystem {
     constructor() {
         this.container = document.querySelector('.hero');
         this.isMobile = this.checkMobile();
+        this.isIOS = this.checkIOS();
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         this.renderer = new THREE.WebGLRenderer({ 
@@ -22,6 +23,7 @@ class ParticleSystem {
         this.touchStartX = 0;
         this.touchStartY = 0;
         this.isTouching = false;
+        this.hasPermission = false;
 
         // Initialize only if WebGL is supported
         if (this.isWebGLSupported()) {
@@ -44,6 +46,10 @@ class ParticleSystem {
     checkMobile() {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
                window.innerWidth <= 768;
+    }
+
+    checkIOS() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     }
 
     addFallbackBackground() {
@@ -143,20 +149,83 @@ class ParticleSystem {
             this.isTouching = false;
         }, { passive: true });
 
-        // Device orientation
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener('deviceorientation', (event) => {
-                if (!this.isTouching) {  // Only use gyroscope when not touching
-                    const beta = event.beta;  // -180 to 180 (front/back)
-                    const gamma = event.gamma; // -90 to 90 (left/right)
-                    
-                    if (beta !== null && gamma !== null) {
-                        this.mouseX = gamma * 10;  // Scale the movement
-                        this.mouseY = beta * 10;
-                    }
-                }
-            }, { passive: true });
+        // Device orientation for iOS
+        if (this.isIOS) {
+            this.setupIOSOrientation();
+        } else if (window.DeviceOrientationEvent) {
+            this.setupDeviceOrientation();
         }
+    }
+
+    setupIOSOrientation() {
+        // Request permission for iOS 13+
+        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+            // Add a button or some UI element to request permission
+            const permissionButton = document.createElement('button');
+            permissionButton.innerHTML = 'Enable Motion';
+            permissionButton.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 20px;
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: 5px;
+                z-index: 1000;
+                cursor: pointer;
+                font-size: 14px;
+                opacity: 0.8;
+                transition: opacity 0.3s;
+            `;
+            permissionButton.addEventListener('mouseover', () => {
+                permissionButton.style.opacity = '1';
+            });
+            permissionButton.addEventListener('mouseout', () => {
+                permissionButton.style.opacity = '0.8';
+            });
+
+            permissionButton.addEventListener('click', async () => {
+                try {
+                    const permission = await DeviceOrientationEvent.requestPermission();
+                    if (permission === 'granted') {
+                        this.hasPermission = true;
+                        this.setupDeviceOrientation();
+                        permissionButton.remove();
+                    }
+                } catch (error) {
+                    console.error('Error requesting device orientation permission:', error);
+                }
+            });
+
+            document.body.appendChild(permissionButton);
+        } else {
+            // For older iOS versions
+            this.setupDeviceOrientation();
+        }
+    }
+
+    setupDeviceOrientation() {
+        window.addEventListener('deviceorientation', (event) => {
+            if (!this.isTouching && (this.hasPermission || !this.isIOS)) {
+                let beta = event.beta;  // -180 to 180 (front/back)
+                let gamma = event.gamma; // -90 to 90 (left/right)
+                
+                // Handle iOS specific behavior
+                if (this.isIOS) {
+                    // iOS returns values in different ranges
+                    beta = beta || 0;
+                    gamma = gamma || 0;
+                    
+                    // Scale the values for smoother movement
+                    this.mouseX = gamma * 15;
+                    this.mouseY = beta * 15;
+                } else if (beta !== null && gamma !== null) {
+                    this.mouseX = gamma * 10;
+                    this.mouseY = beta * 10;
+                }
+            }
+        }, { passive: true });
     }
 
     onDocumentMouseMove(event) {
@@ -184,7 +253,7 @@ class ParticleSystem {
             this.targetY = this.mouseY * 0.001;
 
             // Add a small constant rotation when not interacting
-            if (!this.isTouching) {
+            if (!this.isTouching && (!this.isIOS || this.hasPermission)) {
                 this.particleSystem.rotation.x += 0.0002;
                 this.particleSystem.rotation.y += 0.0002;
             }
