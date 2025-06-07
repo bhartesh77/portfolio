@@ -1,0 +1,196 @@
+.terminal {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: rgba(30, 30, 30, 0.95);
+    font-family: 'JetBrains Mono', monospace;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: rgba(45, 45, 45, 0.95);
+    border-bottom: 1px solid #3d3d3d;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: move;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.terminal-header:active {
+    cursor: grabbing;
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.terminal-button:hover {
+    transform: scale(1.1);
+}
+
+.terminal-button.close {
+    background: #ff5f56;
+}
+
+.terminal-button.close:hover {
+    background: #ff3b30;
+}
+
+.terminal-button.minimize {
+    background: #ffbd2e;
+}
+
+.terminal-button.minimize:hover {
+    background: #ffcc00;
+}
+
+.terminal-button.maximize {
+    background: #27c93f;
+}
+
+.terminal-button.maximize:hover {
+    background: #34c759;
+}
+
+.terminal-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+.terminal-button:hover::after {
+    width: 4px;
+    height: 4px;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+}
+
+.terminal-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.terminal-content {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background: rgba(30, 30, 30, 0.95);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.terminal-output {
+    margin-bottom: 1rem;
+}
+
+.line {
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+
+.prompt {
+    color: #0f0;
+    margin-right: 0.5rem;
+}
+
+.command {
+    color: #fff;
+}
+
+.output {
+    color: #ccc;
+    margin-left: 1rem;
+}
+
+.output p {
+    margin: 0.5rem 0;
+}
+
+.output ul {
+    margin: 0.5rem 0;
+    padding-left: 2rem;
+}
+
+.output li {
+    margin: 0.25rem 0;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+}
+
+.terminal-input {
+    flex-grow: 1;
+    background: none;
+    border: none;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    outline: none;
+    padding: 0.5rem;
+}
+
+/* Custom scrollbar */
+.terminal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-content::-webkit-scrollbar-track {
+    background: #2d2d2d;
+}
+
+.terminal-content::-webkit-scrollbar-thumb {
+    background: #4d4d4d;
+    border-radius: 4px;
+}
+
+.terminal-content::-webkit-scrollbar-thumb:hover {
+    background: #5d5d5d;
+} 

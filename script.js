@@ -11,15 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const now = new Date();
         const timeElement = document.getElementById('currentTime');
         const dateElement = document.getElementById('currentDate');
+        const desktopTimeElement = document.getElementById('desktopTime');
         
         // Update time
         const hours = String(now.getHours()).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
-        timeElement.textContent = `${hours}:${minutes}`;
+        const timeString = `${hours}:${minutes}`;
+        
+        if (timeElement) timeElement.textContent = timeString;
+        if (desktopTimeElement) desktopTimeElement.textContent = timeString;
         
         // Update date
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        dateElement.textContent = now.toLocaleDateString('en-US', options);
+        if (dateElement) dateElement.textContent = now.toLocaleDateString('en-US', options);
     }
 
     // Update time every minute

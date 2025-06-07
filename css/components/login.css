@@ -1,0 +1,90 @@
+.login-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-header img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+}
+
+.login-header h1 {
+    color: white;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.login-profiles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.profile-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.profile-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.profile-avatar {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-avatar i {
+    font-size: 2rem;
+    color: white;
+}
+
+.profile-name {
+    color: white;
+    font-size: 1rem;
+}
+
+.login-footer {
+    text-align: center;
+}
+
+.system-info {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.system-info .time {
+    margin-right: 1rem;
+} 

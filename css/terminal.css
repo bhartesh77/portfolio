@@ -1,0 +1,73 @@
+.terminal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 60vh;
+    background: rgba(45, 45, 45, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: rgba(30, 30, 30, 0.95);
+    border-bottom: 1px solid #3d3d3d;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: move;
+    user-select: none;
+}
+
+.terminal-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.terminal-button:hover {
+    opacity: 0.8;
+}
+
+.terminal-button.close {
+    background: #ff5f56;
+}
+
+.terminal-button.minimize {
+    background: #ffbd2e;
+}
+
+.terminal-button.maximize {
+    background: #27c93f;
+}
+
+.terminal-content {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    color: #fff;
+} 

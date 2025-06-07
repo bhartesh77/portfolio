@@ -1,0 +1,204 @@
+.guest-screen {
+    height: 100vh;
+    background: #2c3e50;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.desktop {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.activities-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.activities-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.activities-button i {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-bar:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.top-bar-center {
+    color: white;
+}
+
+.time-display {
+    font-size: 1.1rem;
+}
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.system-indicators {
+    display: flex;
+    gap: 1rem;
+    color: white;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.user-menu:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Desktop Icons */
+.desktop-icons {
+    flex-grow: 1;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 1rem;
+    align-content: start;
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.desktop-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.desktop-icon i {
+    font-size: 2rem;
+}
+
+.desktop-icon span {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* Dock */
+.dock {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.dock-item {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.dock-item:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dock-item.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dock-item i {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.dock-item::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.dock-item:hover::after,
+.dock-item.active::after {
+    opacity: 1;
+} 

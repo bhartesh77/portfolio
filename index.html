@@ -8,6 +8,7 @@
     <meta name="author" content="Bhartesh Kaushik">
     <title>Bhartesh Kaushik - Terminal Portfolio</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components/terminal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -15,16 +16,10 @@
     <div class="login-screen" id="loginScreen">
         <div class="login-container">
             <div class="login-header">
-                <img src="https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png" alt="Ubuntu Logo" class="ubuntu-logo">
+                <img src="https://assets.ubuntu.com/v1/29985a98-ubuntu-logo32.png" alt="Ubuntu Logo" class="ubuntu-logo">
                 <h1>Ubuntu</h1>
             </div>
             <div class="login-profiles">
-                <div class="profile-card" data-user="guest">
-                    <div class="profile-avatar">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="profile-name">Guest</div>
-                </div>
                 <div class="profile-card" data-user="root">
                     <div class="profile-avatar">
                         <i class="fas fa-user-shield"></i>
@@ -43,12 +38,15 @@
 
     <div class="terminal" id="terminal" style="display: none;">
         <div class="terminal-header">
+            <div class="terminal-title">
+                <i class="fas fa-terminal"></i>
+                <span>bhartesh@portfolio:~</span>
+            </div>
             <div class="terminal-buttons">
                 <span class="terminal-button close"></span>
                 <span class="terminal-button minimize"></span>
                 <span class="terminal-button maximize"></span>
             </div>
-            <div class="terminal-title">bhartesh@portfolio:~</div>
         </div>
         <div class="terminal-content">
             <div class="terminal-output">
@@ -79,13 +77,53 @@
     </div>
 
     <div class="guest-screen" id="guestScreen" style="display: none;">
-        <div class="guest-content">
-            <h1>Welcome, Guest!</h1>
-            <p>This is a simple guest view. Please login as root to access the full terminal experience.</p>
-            <button class="logout-btn" onclick="showLoginScreen()">Logout</button>
+        <div class="desktop">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <div class="activities-button">
+                        <i class="fas fa-th-large"></i>
+                    </div>
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <span>Search</span>
+                    </div>
+                </div>
+                <div class="top-bar-center">
+                    <div class="time-display">
+                        <span id="desktopTime">00:00</span>
+                    </div>
+                </div>
+                <div class="top-bar-right">
+                    <div class="system-indicators">
+                        <i class="fas fa-wifi"></i>
+                        <i class="fas fa-volume-up"></i>
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <div class="user-menu">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Root</span>
+                        <button class="logout-btn" onclick="showLoginScreen()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop Icons -->
+            <div class="desktop-icons">
+                <div class="desktop-icon" id="terminalIcon">
+                    <i class="fas fa-terminal"></i>
+                    <span>Terminal</span>
+                </div>
+                <div class="desktop-icon" id="catMemesFolder">
+                    <i class="fas fa-cat"></i>
+                    <span>Cat Memes</span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html> 
