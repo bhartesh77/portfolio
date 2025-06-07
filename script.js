@@ -201,8 +201,8 @@ Awards & Achievements
 Contact Information
 =================
 
-GitHub: https://github.com/bhartesh
-LinkedIn: https://linkedin.com/in/bhartesh
+GitHub: https://github.com/bhartesh77
+LinkedIn: https://linkedin.com/in/bhartesh-kaushik-7647081a3
 Email: bharteshkaushik@gmail.com`;
         },
         clear: () => {
